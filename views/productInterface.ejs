@@ -33,60 +33,110 @@
           border-radius: 16px;
         "
       >
-        <form action="" class="col s12">
+        <form action="/product/submitted" method="post" class="col s12">
           <div class="row">
             <div class="input-field col s3">
               <i class="material-icons prefix">perm_identity</i>
-              <input id="icon_prefix" type="text" class="validate" />
+              <input
+                id="icon_prefix"
+                name="productid"
+                type="text"
+                class="validate"
+              />
               <label for="icon_prefix">Product Id</label>
             </div>
             <div class="input-field col s3">
               <i class="material-icons prefix">create</i>
-              <input id="icon_prefix" type="text" class="validate" />
+              <input
+                id="icon_prefix"
+                type="text"
+                name="brandid"
+                class="validate"
+              />
               <label for="icon_prefix">Brand Id</label>
             </div>
             <div class="input-field col s3">
               <i class="material-icons prefix">create</i>
-              <input id="icon_telephone" type="text" class="validate" />
+              <input
+                id="icon_telephone"
+                type="text"
+                name="categoryid"
+                class="validate"
+              />
               <label for="icon_telephone">Category Id</label>
             </div>
             <div class="input-field col s3">
               <i class="material-icons prefix">create</i>
-              <input id="icon_telephone" type="text" class="validate" />
+              <input
+                id="icon_telephone"
+                type="text"
+                class="validate"
+                name="subcategoryid"
+              />
               <label for="icon_telephone">Sub-Category Id</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s4">
               <i class="material-icons prefix">sentiment_very_satisfied</i>
-              <input id="icon_prefix" type="text" class="validate" />
+              <input
+                id="icon_prefix"
+                name="productname"
+                type="text"
+                class="validate"
+              />
               <label for="icon_prefix">Product Name</label>
             </div>
             <div class="input-field col s8">
               <i class="material-icons prefix">description</i>
-              <input id="icon_prefix" type="text" class="validate" />
+              <input
+                id="icon_prefix"
+                type="text"
+                name="description"
+                class="validate"
+              />
               <label for="icon_prefix">Product Description</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s3">
               <i class="material-icons prefix">attach_money</i>
-              <input id="icon_prefix" type="text" class="validate" />
+              <input
+                id="icon_prefix"
+                type="text"
+                class="validate"
+                name="price"
+              />
               <label for="icon_prefix">Price</label>
             </div>
             <div class="input-field col s3">
               <i class="material-icons prefix">money_off</i>
-              <input id="icon_prefix" type="text" class="validate" />
+              <input
+                id="icon_prefix"
+                name="offerprice"
+                type="text"
+                class="validate"
+              />
               <label for="icon_prefix">Offer Price</label>
             </div>
             <div class="input-field col s3">
               <i class="material-icons prefix">rate_review</i>
-              <input id="icon_telephone" type="text" class="validate" />
+              <input
+                id="icon_telephone"
+                type="text"
+                name="rating"
+                class="validate"
+              />
               <label for="icon_telephone">Rating</label>
             </div>
             <div class="input-field col s3">
               <i class="material-icons prefix">shopping_cart</i>
-              <input id="icon_telephone" type="text" class="validate" />
+              <input
+                id="icon_telephone"
+                type="text"
+                name="stock"
+                class="validate"
+              />
               <label for="icon_telephone">Stock</label>
             </div>
           </div>
@@ -103,7 +153,7 @@
               </div>
             </div>
             <div class="input-field col s6">
-              <select>
+              <select name="status">
                 <option value="" disabled selected>Select Status</option>
                 <option value="1">Continue</option>
                 <option value="2">Discontinue</option>
