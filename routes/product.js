@@ -28,7 +28,7 @@ router.post("/product/submitted", function (req, res) {
       } else {
         console.log("Result : ", result);
         res.render("productInterface", {
-          message: "Product Successfully Added to Database",
+          message: "Record Submitted to Database",
         });
       }
     }
