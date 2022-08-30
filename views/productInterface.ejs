@@ -30,7 +30,7 @@
       >
         <form action="/product/submitproduct" method="post" class="col s12">
           <div class="row">
-            <div class="input-field col s3" style="margin-left: 40px;">
+            <div class="input-field col s4">
               <select name="categoryid" id="categoryid">
                 <option disabled selected>Select Category</option>
               </select>
@@ -60,7 +60,7 @@
               />
               <label for="icon_prefix">Product Name</label>
             </div>
-            <div class="input-field col s8">
+            <div class="input-field col s4">
               <i class="material-icons prefix">description</i>
               <input
                 id="icon_prefix"
@@ -70,9 +70,15 @@
               />
               <label for="icon_prefix">Product Description</label>
             </div>
+            <div class="input-field col s4">
+              <div class="file-field input-field">
+                <b>Upload Picture</b>
+                <input type="file" />
+              </div>
+            </div>
           </div>
           <div class="row">
-            <div class="input-field col s3">
+            <div class="input-field col s4">
               <i class="material-icons prefix">attach_money</i>
               <input
                 id="icon_prefix"
@@ -82,7 +88,7 @@
               />
               <label for="icon_prefix">Price</label>
             </div>
-            <div class="input-field col s3">
+            <div class="input-field col s4">
               <i class="material-icons prefix">money_off</i>
               <input
                 id="icon_prefix"
@@ -92,7 +98,7 @@
               />
               <label for="icon_prefix">Offer Price</label>
             </div>
-            <div class="input-field col s3">
+            <div class="input-field col s4">
               <i class="material-icons prefix">rate_review</i>
               <input
                 id="icon_telephone"
@@ -102,7 +108,9 @@
               />
               <label for="icon_telephone">Rating</label>
             </div>
-            <div class="input-field col s3">
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
               <i class="material-icons prefix">shopping_cart</i>
               <input
                 id="icon_telephone"
@@ -111,19 +119,6 @@
                 class="validate"
               />
               <label for="icon_telephone">Stock</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s6">
-              <div class="file-field input-field">
-                <div class="btn">
-                  <span>Upload Picture</span>
-                  <input type="file" />
-                </div>
-                <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text" />
-                </div>
-              </div>
             </div>
             <div class="input-field col s6">
               <select name="status">
@@ -134,6 +129,7 @@
               <label>Status of Product</label>
             </div>
           </div>
+          <div class="row"></div>
           <div class="row">
             <button
               class="btn waves-effect waves-light"
