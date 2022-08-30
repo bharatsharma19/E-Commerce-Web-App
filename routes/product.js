@@ -6,7 +6,19 @@ router.get("/product", function (req, res, next) {
   res.render("productInterface", { messageError: "", message: "" });
 });
 
-router.post("/product/submitted", function (req, res) {
+router.get("/product/fetch_all_categories", function (req, res) {
+  pool.query("select * from category", function (error, result) {
+    if (error) {
+      {
+        res.status(500).json([]);
+      }
+    } else {
+      res.status(200).json({ result: result });
+    }
+  });
+});
+
+router.post("/product/submitproduct", function (req, res) {
   pool.query(
     "insert into products(categoryid, subcategoryid, brandid, productname, price, offerprice, rating, description, stock, status) values(?,?,?,?,?,?,?,?,?,?)",
     [
