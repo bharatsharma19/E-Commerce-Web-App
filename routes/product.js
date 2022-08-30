@@ -13,9 +13,41 @@ router.get("/product/fetch_all_categories", function (req, res) {
         res.status(500).json([]);
       }
     } else {
-      res.status(200).json({ result: result });
+      res.status(200).json({ category: result });
     }
   });
+});
+
+router.get("/product/fetch_all_subcategories", function (req, res) {
+  pool.query(
+    "select * from subcategory where categoryid = ?",
+    [req.query.categoryid],
+    function (error, result) {
+      if (error) {
+        {
+          res.status(500).json([]);
+        }
+      } else {
+        res.status(200).json({ subcategory: result });
+      }
+    }
+  );
+});
+
+router.get("/product/fetch_all_brands", function (req, res) {
+  pool.query(
+    "select * from brands where categoryid = ?",
+    [req.query.categoryid],
+    function (error, result) {
+      if (error) {
+        {
+          res.status(500).json([]);
+        }
+      } else {
+        res.status(200).json({ brand: result });
+      }
+    }
+  );
 });
 
 router.post("/product/submitproduct", function (req, res) {
