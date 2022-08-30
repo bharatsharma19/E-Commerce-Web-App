@@ -3,7 +3,7 @@ var router = express.Router();
 var pool = require("./pool");
 
 router.get("/product", function (req, res, next) {
-  res.render("productInterface", { message: "" });
+  res.render("productInterface", { messageError: "", message: "" });
 });
 
 router.post("/product/submitted", function (req, res) {
@@ -24,11 +24,15 @@ router.post("/product/submitted", function (req, res) {
     function (error, result) {
       if (error) {
         console.log("Error : ", error);
-        res.render("productInterface", { message: "Server Error" });
+        res.render("productInterface", {
+          message: "",
+          messageError: "Server Error",
+        });
       } else {
         console.log("Result : ", result);
         res.render("productInterface", {
           message: "Record Submitted to Database",
+          messageError: "",
         });
       }
     }
