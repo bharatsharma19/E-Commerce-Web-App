@@ -28,7 +28,12 @@
           border-radius: 16px;
         "
       >
-        <form action="/product/submitproduct" method="post" class="col s12">
+        <form
+          action="/product/submitproduct"
+          method="post"
+          enctype="multipart/form-data"
+          class="col s12"
+        >
           <div class="row">
             <div class="input-field col s4">
               <select name="categoryid" id="categoryid">
@@ -73,7 +78,7 @@
             <div class="input-field col s4">
               <div class="file-field input-field">
                 <b>Upload Picture</b>
-                <input type="file" />
+                <input type="file" name="picture" />
               </div>
             </div>
           </div>

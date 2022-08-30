@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var pool = require("./pool");
+var upload = require("./multer");
 
 router.get("/product", function (req, res, next) {
   res.render("productInterface", { messageError: "", message: "" });
@@ -50,37 +51,45 @@ router.get("/product/fetch_all_brands", function (req, res) {
   );
 });
 
-router.post("/product/submitproduct", function (req, res) {
-  pool.query(
-    "insert into products(categoryid, subcategoryid, brandid, productname, price, offerprice, rating, description, stock, status) values(?,?,?,?,?,?,?,?,?,?)",
-    [
-      req.body.categoryid,
-      req.body.subcategoryid,
-      req.body.brandid,
-      req.body.productname,
-      req.body.price,
-      req.body.offerprice,
-      req.body.rating,
-      req.body.description,
-      req.body.stock,
-      req.body.status,
-    ],
-    function (error, result) {
-      if (error) {
-        console.log("Error : ", error);
-        res.render("productInterface", {
-          message: "",
-          messageError: "Server Error",
-        });
-      } else {
-        console.log("Result : ", result);
-        res.render("productInterface", {
-          message: "Record Submitted to Database",
-          messageError: "",
-        });
+router.post(
+  "/product/submitproduct",
+  upload.any("picture"),
+  function (req, res) {
+    console.log("Form Data : ", req.body);
+    console.log("File : ", req.files);
+
+    pool.query(
+      "insert into products(categoryid, subcategoryid, brandid, productname, price, offerprice, rating, description, stock, status, picture) values(?,?,?,?,?,?,?,?,?,?,?)",
+      [
+        req.body.categoryid,
+        req.body.subcategoryid,
+        req.body.brandid,
+        req.body.productname,
+        req.body.price,
+        req.body.offerprice,
+        req.body.rating,
+        req.body.description,
+        req.body.stock,
+        req.body.status,
+        req.files[0].filename,
+      ],
+      function (error, result) {
+        if (error) {
+          console.log("Error : ", error);
+          res.render("productInterface", {
+            message: "",
+            messageError: "Server Error",
+          });
+        } else {
+          console.log("Result : ", result);
+          res.render("productInterface", {
+            message: "Record Submitted to Database",
+            messageError: "",
+          });
+        }
       }
-    }
-  );
-});
+    );
+  }
+);
 
 module.exports = router;
