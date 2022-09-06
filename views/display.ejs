@@ -23,11 +23,13 @@
         text-decoration: underline;
       "
     >
-      Available Products
+      <b> Available Products </b>
     </h4>
 
     <% if(status==false) {%>
-    <h6><%= data %></h6>
+    <h3 style="display: flex; justify-content: center; align-items: center">
+      <%= data %>
+    </h3>
     <%} else { %>
     <table class="table centered">
       <thead>
