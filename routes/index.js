@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("display");
+  res.render("index", { title: "Developed by Bharat Sharma" });
 });
 
 module.exports = router;

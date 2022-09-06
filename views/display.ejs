@@ -1,12 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <title>Home</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <h4
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: underline;
+      "
+    >
+      Available Products
+    </h4>
+
+    <% if(status==false) {%>
+    <h6><%= data %></h6>
+    <%} else { %>
+    <table class="responsive-table centered">
+      <thead>
+        <tr>
+          <th>Product Id</th>
+          <th>Category - SubCategory</th>
+          <th>Product Name - Brand</th>
+          <th>Description</th>
+          <th>Price - Offer Price</th>
+          <th>Status - Stock</th>
+          <th>Rating</th>
+          <th>Picture</th>
+        </tr>
+      </thead>
+      <% data.map((item)=>{%>
+      <tbody>
+        <tr>
+          <td><%= item.productid %></td>
+          <td><%= item.categoryid %> - <%= item.subcategoryid %></td>
+          <td><%= item.productname %> - <%= item.brandid %></td>
+          <td><%= item.description %></td>
+          <td><%= item.price %> - <%= item.offerprice %></td>
+          <td><%= item.status %> - <%= item.stock %></td>
+          <td><%= item.rating %></td>
+          <td>
+            <img
+              src="/images/<%= item.picture %>"
+              alt="Picture"
+              style="border-radius: 128px; width: 64px"
+            />
+          </td>
+        </tr>
+      </tbody>
+      <%})%>
+    </table>
+    <% } %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
 </html>
