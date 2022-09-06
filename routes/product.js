@@ -92,4 +92,18 @@ router.post(
   }
 );
 
+router.get("/display", function (req, res) {
+  pool.query("select * from products", function (error, result) {
+    if (error) {
+      res.render("display", { status: false, data: "Server Error..." });
+    } else {
+      if (result.length == 0) {
+        res.render("display", { status: false, data: "No Records Found !" });
+      } else {
+        res.render("display", { status: true, data: result });
+      }
+    }
+  });
+});
+
 module.exports = router;
