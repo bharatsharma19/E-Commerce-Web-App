@@ -12,6 +12,8 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js
+    "></script>
     <title>Home</title>
   </head>
   <body>
@@ -37,11 +39,11 @@
           <th>Product Id</th>
           <th>Product Name</th>
           <th>Description</th>
-          <th>Category - SubCategory - Brand</th>
+          <th>Category - SubCategory - Brand - Rating</th>
           <th>Price - Offer Price</th>
           <th>Status - Stock</th>
-          <th>Rating</th>
           <th>Picture</th>
+          <th>Action</th>
         </tr>
       </thead>
       <% data.map((item)=>{%>
@@ -52,19 +54,32 @@
           <td><%= item.description %></td>
           <td>
             <%= item.categoryname %> - <%= item.subcategoryname %> -
-            <%=item.brandname %>
+            <%=item.brandname %> - <%= item.rating %>
           </td>
           <td>
-            <s style="color: red"> &#8377; <%=item.price%>/-</s> -
+            <s style="color: red"> &#8377; <%=item.price%>/-</s>
             <b style="color: blue"> &#8377;<%= item.offerprice %>/- </b>
           </td>
           <td><%= item.status %> - <strong><%= item.stock %></strong></td>
-          <td><%= item.rating %></td>
           <td>
             <img
               src="/images/<%= item.picture %>"
               alt="Picture"
               style="border-radius: 128px; width: 64px"
+            />
+          </td>
+          <td>
+            <input
+              class="ves-effect waves-light btn-small btnEdit"
+              type="button"
+              value="Edit"
+              id="btnEdit"
+              products="<%=JSON.stringify(item)%>"
+            />
+            <input
+              class="ves-effect waves-light btn-small btnDelete"
+              type="button"
+              value="Delete"
             />
           </td>
         </tr>
@@ -73,6 +88,34 @@
     </table>
     <% } %>
 
+    <!-- Modal -->
+
+    <!-- Modal Structure -->
+    <div id="product" class="modal">
+      <div class="modal-content">
+        <h4 style="display: flex; justify-content: center; align-items: center">
+          Modify Product Details
+        </h4>
+        <p id="products"></p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat"
+          >Submit</a
+        >
+      </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script defer>
+      $(document).ready(function () {
+        $(".modal").modal();
+
+        $(".btnEdit").click(function () {
+          $("#product").modal("open");
+          const item = JSON.parse($(this).attr("products"));
+          alert(item.productname);
+        });
+      });
+    </script>
   </body>
 </html>
