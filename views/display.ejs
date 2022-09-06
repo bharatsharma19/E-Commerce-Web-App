@@ -14,6 +14,7 @@
     />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js
     "></script>
+    <script src="/javascripts/project.js"></script>
     <title>Home</title>
   </head>
   <body>
@@ -91,17 +92,125 @@
     <!-- Modal -->
 
     <!-- Modal Structure -->
-    <div id="product" class="modal">
+    <div id="product" class="modal" style="overflow-y: hidden">
       <div class="modal-content">
         <h4 style="display: flex; justify-content: center; align-items: center">
-          Modify Product Details
+          <i> Edit Product </i>
         </h4>
-        <p id="products"></p>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat"
-          >Submit</a
-        >
+        <div>
+          <div class="row">
+            <div class="input-field col s4">
+              <select required name="categoryid" id="categoryid">
+                <option disabled selected>Select Category</option>
+              </select>
+              <label>Category</label>
+            </div>
+            <div class="input-field col s4">
+              <select required name="subcategoryid" id="subcategoryid">
+                <option disabled selected>Select Sub-Category</option>
+              </select>
+              <label>Sub-Category</label>
+            </div>
+            <div class="input-field col s4">
+              <select name="brandid" id="brandid">
+                <option disabled selected>Select Brand</option>
+              </select>
+              <label>Brand</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s4">
+              <i class="material-icons prefix">sentiment_very_satisfied</i>
+              <input
+                id="productname"
+                name="productname"
+                type="text"
+                class="validate"
+                required
+              />
+              <label for="icon_prefix">Product Name</label>
+            </div>
+            <div class="input-field col s4">
+              <i class="material-icons prefix">description</i>
+              <input
+                id="description"
+                type="text"
+                name="description"
+                class="validate"
+                required
+              />
+              <label for="icon_prefix">Product Description</label>
+            </div>
+            <div class="input-field col s4">
+              <i class="material-icons prefix">shopping_cart</i>
+              <input id="stock" type="text" name="stock" class="validate" />
+              <label for="icon_telephone">Stock</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s3">
+              <i class="material-icons prefix">attach_money</i>
+              <input
+                id="price"
+                type="text"
+                class="validate"
+                name="price"
+                required
+              />
+              <label for="icon_prefix">Price</label>
+            </div>
+            <div class="input-field col s3">
+              <i class="material-icons prefix">money_off</i>
+              <input
+                id="offerprice"
+                name="offerprice"
+                type="text"
+                class="validate"
+                required
+              />
+              <label for="icon_prefix">Offer Price</label>
+            </div>
+            <div class="input-field col s3">
+              <i class="material-icons prefix">rate_review</i>
+              <input
+                id="rating"
+                type="text"
+                name="rating"
+                class="validate"
+                required
+              />
+              <label for="icon_telephone">Rating</label>
+            </div>
+            <div class="input-field col s3">
+              <select required name="status">
+                <option disabled selected>Select Status</option>
+                <option>Continue</option>
+                <option>Discontinue</option>
+              </select>
+              <label>Status of Product</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <button
+                class="btn waves-effect waves-light"
+                type="submit"
+                name="action"
+              >
+                Submit Details
+                <i class="material-icons right">send</i>
+              </button>
+            </div>
+            <div class="input-field col s6 modal-footer">
+              <a href="#!" class="modal-close">
+                <button class="btn waves-effect waves-light">
+                  Close
+                  <i class="material-icons close">close</i>
+                </button></a
+              >
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -113,7 +222,28 @@
         $(".btnEdit").click(function () {
           $("#product").modal("open");
           const item = JSON.parse($(this).attr("products"));
-          alert(item.productname);
+
+          $("#categoryid").val(item.categoryid);
+          $("#categoryid").formSelect();
+
+          $("#subcategoryid").append(
+            $("<option>").text(item.subcategoryname).val(item.subcategoryid)
+          );
+          $("#subcategoryid").val(item.subcategoryid);
+          $("#subcategoryid").formSelect();
+
+          $("#brandid").append(
+            $("<option>").text(item.brandname).val(item.brandid)
+          );
+          $("#brandid").val(item.brandid);
+          $("#brandid").formSelect();
+
+          $("#productname").val(item.productname);
+          $("#description").val(item.description);
+          $("#rating").val(item.rating);
+          $("#price").val(item.price);
+          $("#offerprice").val(item.offerprice);
+          $("#stock").val(item.stock);
         });
       });
     </script>
