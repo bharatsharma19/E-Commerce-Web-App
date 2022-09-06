@@ -92,7 +92,7 @@ router.post(
   }
 );
 
-router.get("/display", function (req, res) {
+router.get("/product/display", function (req, res) {
   pool.query("select * from products", function (error, result) {
     if (error) {
       res.render("display", { status: false, data: "Server Error..." });
