@@ -182,7 +182,7 @@
               <label for="icon_telephone">Rating</label>
             </div>
             <div class="input-field col s3">
-              <select required name="status">
+              <select required name="status" id="status">
                 <option disabled selected>Select Status</option>
                 <option>Continue</option>
                 <option>Discontinue</option>
@@ -244,6 +244,9 @@
           $("#price").val(item.price);
           $("#offerprice").val(item.offerprice);
           $("#stock").val(item.stock);
+
+          $("#status").val(item.status);
+          $("#status").formSelect();
         });
       });
     </script>
