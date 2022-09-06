@@ -29,13 +29,13 @@
     <% if(status==false) {%>
     <h6><%= data %></h6>
     <%} else { %>
-    <table class="responsive-table centered">
+    <table class="table centered">
       <thead>
         <tr>
           <th>Product Id</th>
-          <th>Category - SubCategory</th>
-          <th>Product Name - Brand</th>
+          <th>Product Name</th>
           <th>Description</th>
+          <th>Category - SubCategory - Brand</th>
           <th>Price - Offer Price</th>
           <th>Status - Stock</th>
           <th>Rating</th>
@@ -46,11 +46,17 @@
       <tbody>
         <tr>
           <td><%= item.productid %></td>
-          <td><%= item.categoryid %> - <%= item.subcategoryid %></td>
-          <td><%= item.productname %> - <%= item.brandid %></td>
+          <td><%= item.productname %></td>
           <td><%= item.description %></td>
-          <td><%= item.price %> - <%= item.offerprice %></td>
-          <td><%= item.status %> - <%= item.stock %></td>
+          <td>
+            <%= item.categoryname %> - <%= item.subcategoryname %> -
+            <%=item.brandname %>
+          </td>
+          <td>
+            <s style="color: red"> &#8377; <%=item.price%>/-</s> -
+            <b style="color: blue"> &#8377;<%= item.offerprice %>/- </b>
+          </td>
+          <td><%= item.status %> - <strong><%= item.stock %></strong></td>
           <td><%= item.rating %></td>
           <td>
             <img
