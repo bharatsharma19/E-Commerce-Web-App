@@ -140,6 +140,7 @@
                 required
               />
               <label for="icon_prefix">Product Description</label>
+              <input type="hidden" id="productid" />
             </div>
             <div class="input-field col s4">
               <i class="material-icons prefix">shopping_cart</i>
@@ -224,6 +225,8 @@
           $("#product").modal("open");
           const item = JSON.parse($(this).attr("products"));
 
+          $("#productid").val(item.productid);
+
           $("#categoryid").val(item.categoryid);
           $("#categoryid").formSelect();
 
@@ -250,6 +253,29 @@
           $("#status").formSelect();
 
           M.updateTextFields();
+        });
+
+        $("#updBtn").click(function () {
+          $.getJSON(
+            "/product/editproduct",
+            {
+              categoryid: $("#categoryid").val(),
+              subcategoryid: $("#subcategoryid").val(),
+              brandid: $("#brandid").val(),
+              productname: $("#productname").val(),
+              price: $("#price").val(),
+              offerprice: $("#offerprice").val(),
+              rating: $("#rating").val(),
+              description: $("#description").val(),
+              stock: $("#stock").val(),
+              status: $("#status").val(),
+              productid: $("#productid").val(),
+            },
+            function (data) {
+              alert(data.message);
+              window.location.reload("/product/display");
+            }
+          );
         });
       });
     </script>

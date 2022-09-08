@@ -128,7 +128,7 @@ router.get("/product/display", function (req, res) {
   );
 });
 
-router.get("/editproduct", function (req, res) {
+router.get("/product/editproduct", function (req, res) {
   pool.query(
     "update products set categoryid=?, subcategoryid=?, brandid=?,productname=?,price=?,offerprice=?,rating=?,description=?,stock=?,status=? where productid=?",
     [
@@ -142,18 +142,21 @@ router.get("/editproduct", function (req, res) {
       req.query.description,
       req.query.stock,
       req.query.status,
-      req.query.status,
       req.query.productid,
     ],
     function (error, result) {
       if (error) {
         console.log("Error : ", error);
-        res.status(500).json({ status: false, message: "Server Error..." });
+        res.status(500).json({
+          status: false,
+          message: "Server Error...",
+        });
       } else {
         console.log("Result : ", result);
-        res
-          .status(200)
-          .json({ status: true, message: "Record Successfully Modified!" });
+        res.status(200).json({
+          status: true,
+          message: "Record Successfully Modified!",
+        });
       }
     }
   );
@@ -166,12 +169,16 @@ router.get("/deleteproduct", function (req, res) {
     function (error, result) {
       if (error) {
         console.log("Error : ", error);
-        res.status(500).json({ status: false, message: "Server Error..." });
+        res.status(500).json({
+          status: false,
+          message: "Server Error...",
+        });
       } else {
         console.log("Result : ", result);
-        res
-          .status(200)
-          .json({ status: true, message: "Record Successfully Deleted!" });
+        res.status(200).json({
+          status: true,
+          message: "Record Successfully Deleted!",
+        });
       }
     }
   );
