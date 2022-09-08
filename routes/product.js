@@ -159,4 +159,22 @@ router.get("/editproduct", function (req, res) {
   );
 });
 
+router.get("/deleteproduct", function (req, res) {
+  pool.query(
+    "delete from products where productid=?",
+    [req.query.productid],
+    function (error, result) {
+      if (error) {
+        console.log("Error : ", error);
+        res.status(500).json({ status: false, message: "Server Error..." });
+      } else {
+        console.log("Result : ", result);
+        res
+          .status(200)
+          .json({ status: true, message: "Record Successfully Deleted!" });
+      }
+    }
+  );
+});
+
 module.exports = router;
