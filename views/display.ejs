@@ -77,11 +77,6 @@
               id="btnEdit"
               products="<%=JSON.stringify(item)%>"
             />
-            <input
-              class="ves-effect waves-light btn-small btnDelete"
-              type="button"
-              value="Delete"
-            />
           </td>
         </tr>
       </tbody>
@@ -192,7 +187,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s3">
               <button
                 class="btn waves-effect waves-light"
                 type="submit"
@@ -203,9 +198,20 @@
                 <i class="material-icons right">edit</i>
               </button>
             </div>
+            <div class="input-field col s3">
+              <button
+                class="btn waves-effect waves-light"
+                type="submit"
+                name="action"
+                id="delBtn"
+              >
+                Delete Product
+                <i class="material-icons right">edit</i>
+              </button>
+            </div>
             <div class="input-field col s6 modal-footer">
               <a href="#!" class="modal-close">
-                <button class="btn waves-effect waves-light" id="delBtn">
+                <button class="btn waves-effect waves-light">
                   Close
                   <i class="material-icons close">close</i>
                 </button></a
@@ -269,6 +275,19 @@
               description: $("#description").val(),
               stock: $("#stock").val(),
               status: $("#status").val(),
+              productid: $("#productid").val(),
+            },
+            function (data) {
+              alert(data.message);
+              window.location.reload("/product/display");
+            }
+          );
+        });
+
+        $("#delBtn").click(function () {
+          $.getJSON(
+            "/product/deleteproduct",
+            {
               productid: $("#productid").val(),
             },
             function (data) {

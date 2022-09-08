@@ -162,7 +162,7 @@ router.get("/product/editproduct", function (req, res) {
   );
 });
 
-router.get("/deleteproduct", function (req, res) {
+router.get("/product/deleteproduct", function (req, res) {
   pool.query(
     "delete from products where productid=?",
     [req.query.productid],
