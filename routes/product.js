@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var pool = require("./pool");
 var upload = require("./multer");
+const { query } = require("express");
 
 router.get("/product", function (req, res, next) {
   res.render("productInterface", {
@@ -122,6 +123,37 @@ router.get("/product/display", function (req, res) {
             data: result,
           });
         }
+      }
+    }
+  );
+});
+
+router.get("/editproduct", function (req, res) {
+  pool.query(
+    "update products set categoryid=?, subcategoryid=?, brandid=?,productname=?,price=?,offerprice=?,rating=?,description=?,stock=?,status=? where productid=?",
+    [
+      req.query.categoryid,
+      req.query.subcategoryid,
+      req.query.brandid,
+      req.query.productname,
+      req.query.price,
+      req.query.offerprice,
+      req.query.rating,
+      req.query.description,
+      req.query.stock,
+      req.query.status,
+      req.query.status,
+      req.query.productid,
+    ],
+    function (error, result) {
+      if (error) {
+        console.log("Error : ", error);
+        res.status(500).json({ status: false, message: "Server Error..." });
+      } else {
+        console.log("Result : ", result);
+        res
+          .status(200)
+          .json({ status: true, message: "Record Successfully Modified!" });
       }
     }
   );
