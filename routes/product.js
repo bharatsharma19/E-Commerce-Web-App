@@ -184,4 +184,8 @@ router.get("/product/deleteproduct", function (req, res) {
   );
 });
 
+router.get("/product/updatepicture", function (req, res) {
+  
+});
+
 module.exports = router;
