@@ -397,6 +397,9 @@
         });
 
         $("#uploadPicture").click(function () {
+          const item = JSON.parse($(this).attr("products"));
+          $("#productid").val(item.productid);
+
           var formData = new FormData();
 
           formData.append("productid", $("#productid").val());
@@ -418,12 +421,12 @@
             success: function (response) {
               if (response != 0) {
                 if (response.result) {
-                  $("#msgUpdate").html("Picture Updated Successfully");
+                  alert(response.status);
                 } else {
-                  $("#msgUpdate").html("Server Error");
+                  alert(response.status);
                 }
               } else {
-                $("#msgUpdate").html("Server Error");
+                alert(response.status);
               }
             },
           });
