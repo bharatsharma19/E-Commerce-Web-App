@@ -9,10 +9,6 @@ var pool = mysql.createConnection({
   multipleStatements: true,
 });
 
-if (pool) {
-  console.log("Connection Success");
-} else {
-  console.log("Cant connect to db, Check ur db connection");
-}
-
 module.exports = pool;
+
+// Bharat Sharma

@@ -65,9 +65,6 @@ router.post(
   "/product/submitproduct",
   upload.any("picture"),
   function (req, res) {
-    console.log("Form Data : ", req.body);
-    console.log("File : ", req.files);
-
     pool.query(
       "insert into products(categoryid, subcategoryid, brandid, productname, price, offerprice, rating, description, stock, status, picture) values(?,?,?,?,?,?,?,?,?,?,?)",
       [
@@ -85,13 +82,11 @@ router.post(
       ],
       function (error, result) {
         if (error) {
-          console.log("Error : ", error);
           res.render("productInterface", {
             message: "",
             messageError: "Server Error",
           });
         } else {
-          console.log("Result : ", result);
           res.render("productInterface", {
             message: "Record Submitted to Database",
             messageError: "",
@@ -146,13 +141,11 @@ router.get("/product/editproduct", function (req, res) {
     ],
     function (error, result) {
       if (error) {
-        console.log("Error : ", error);
         res.status(500).json({
           status: false,
           message: "Server Error...",
         });
       } else {
-        console.log("Result : ", result);
         res.status(200).json({
           status: true,
           message: "Record Successfully Modified!",
@@ -168,13 +161,11 @@ router.get("/product/deleteproduct", function (req, res) {
     [req.query.productid],
     function (error, result) {
       if (error) {
-        console.log("Error : ", error);
         res.status(500).json({
           status: false,
           message: "Server Error...",
         });
       } else {
-        console.log("Result : ", result);
         res.status(200).json({
           status: true,
           message: "Record Successfully Deleted!",
@@ -184,8 +175,6 @@ router.get("/product/deleteproduct", function (req, res) {
   );
 });
 
-router.get("/product/updatepicture", function (req, res) {
-  
-});
+router.get("/product/updatepicture", function (req, res) {});
 
 module.exports = router;
