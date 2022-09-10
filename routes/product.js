@@ -4,7 +4,7 @@ var pool = require("./pool");
 var upload = require("./multer");
 const { query } = require("express");
 
-router.get("/product", function (req, res, next) {
+router.get("/product/add", function (req, res, next) {
   res.render("productInterface", {
     messageError: "",
     message: "",
