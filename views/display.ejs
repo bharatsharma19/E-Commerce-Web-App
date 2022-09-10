@@ -235,18 +235,63 @@
       <div class="modal-content">
         <h5
           id="title"
-          style="display: flex; justify-content: center; align-items: center"
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bolder;
+            margin-bottom: 16px;
+          "
         >
-          Edit Picture
+          <b> Edit Picture </b>
         </h5>
         <div class="editPicture">
-          <img id="pPicture" />
+          <img
+            id="pPicture"
+            style="
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+              width: 50%;
+              width: 264px;
+              height: 216px;
+              border-radius: 128px;
+            "
+          />
+        </div>
+        <div>
+          <strong
+            style="
+              font-size: 18px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            "
+            >Select New Picture</strong
+          >
+        </div>
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>File</span>
+            <input type="file" name="picture" required />
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" />
+          </div>
         </div>
       </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat"
-          >Close</a
-        >
+        <div class="row">
+          <div
+            class="col s6"
+            style="display: flex; justify-content: flex-start; cursor: pointer"
+          >
+            <input type="button" value="Submit" class="btn" />
+          </div>
+          <div class="col s6">
+            <a class="modal-close waves-effect waves-green btn-flat">Close</a>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Picture Updation Modal End -->
@@ -332,6 +377,8 @@
           var item = JSON.parse($(this).attr("products"));
 
           $("#title").html(`Edit Product ${item.productname}`);
+
+          $("#pPicture").attr("src", `/images/${item.picture}`);
         });
       });
     </script>
