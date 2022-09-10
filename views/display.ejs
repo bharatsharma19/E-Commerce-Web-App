@@ -34,7 +34,7 @@
       <%= data %>
     </h3>
     <%} else { %>
-    <table class="table centered">
+    <table class="table centered" style="cursor: not-allowed">
       <thead>
         <tr>
           <th>Product Id</th>
@@ -63,11 +63,18 @@
           </td>
           <td><%= item.status %> - <strong><%= item.stock %></strong></td>
           <td>
-            <img
-              src="/images/<%= item.picture %>"
-              alt="Picture"
-              style="border-radius: 128px; width: 64px"
-            />
+            <button
+              type="button"
+              class="btnPicture"
+              products="<%=JSON.stringify(item)%>"
+              style="cursor: pointer"
+            >
+              <img
+                src="/images/<%= item.picture %>"
+                alt="Picture"
+                style="border-radius: 128px; width: 64px"
+              />
+            </button>
           </td>
           <td>
             <input
@@ -84,9 +91,9 @@
     </table>
     <% } %>
 
-    <!-- Modal -->
-
     <!-- Modal Structure -->
+
+    <!-- Edit Product Modal Start -->
     <div id="product" class="modal" style="overflow-y: hidden">
       <div class="modal-content">
         <h4 style="display: flex; justify-content: center; align-items: center">
@@ -221,6 +228,28 @@
         </div>
       </div>
     </div>
+    <!-- Edit Product Modal End -->
+
+    <!-- Picture Updation Modal Start -->
+    <div id="pictureDialog" class="modal">
+      <div class="modal-content">
+        <h5
+          id="title"
+          style="display: flex; justify-content: center; align-items: center"
+        >
+          Edit Picture
+        </h5>
+        <div class="editPicture">
+          <img id="pPicture" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat"
+          >Close</a
+        >
+      </div>
+    </div>
+    <!-- Picture Updation Modal End -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script defer>
@@ -295,6 +324,14 @@
               window.location.reload("/product/display");
             }
           );
+        });
+
+        $(".btnPicture").click(function () {
+          $("#pictureDialog").modal("open");
+
+          var item = JSON.parse($(this).attr("products"));
+
+          $("#title").html(`Edit Product ${item.productname}`);
         });
       });
     </script>
