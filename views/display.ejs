@@ -273,7 +273,7 @@
         <div class="file-field input-field">
           <div class="btn">
             <span>File</span>
-            <input type="file" name="picture" required />
+            <input type="file" id="picture" required />
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate" type="text" />
@@ -284,7 +284,11 @@
         <div class="row">
           <div
             class="col s6"
-            style="display: flex; justify-content: flex-start; cursor: pointer"
+            style="
+              display: flex;
+              justify-content: space-evenly;
+              cursor: pointer;
+            "
           >
             <button
               type="button"
@@ -294,8 +298,13 @@
               Upload
             </button>
           </div>
-          <div class="col s6">
-            <a class="modal-close waves-effect waves-green btn-flat">Close</a>
+          <div
+            class="col s6"
+            style="display: flex; justify-content: space-evenly"
+          >
+            <a class="modal-close waves-effect waves-green">
+              <button class="btn waves-effect waves-light">Close</button>
+            </a>
           </div>
         </div>
       </div>
@@ -385,6 +394,39 @@
           $("#title").html(`Edit Product ${item.productname}`);
 
           $("#pPicture").attr("src", `/images/${item.picture}`);
+        });
+
+        $("#uploadPicture").click(function () {
+          var formData = new FormData();
+
+          formData.append("productid", $("#productid").val());
+
+          var files = $("#picture")[0].files;
+
+          if (files.length > 0) {
+            formData.append("picture", files[0]);
+          }
+
+          $.ajax({
+            url: "/product/updatepicture",
+            type: "post",
+            headers: { "Content-Type": "application/json" },
+            processData: false,
+            data: formData,
+            contentType: false,
+
+            success: function (response) {
+              if (response != 0) {
+                if (response.result) {
+                  $("#msgUpdate").html("Picture Updated Successfully");
+                } else {
+                  $("#msgUpdate").html("Server Error");
+                }
+              } else {
+                $("#msgUpdate").html("Server Error");
+              }
+            },
+          });
         });
       });
     </script>
