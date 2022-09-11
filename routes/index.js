@@ -11,4 +11,8 @@ router.get("/login", function (req, res) {
   res.render("login", { msg: "" });
 });
 
+router.get("/dashboard", function (req, res) {
+  res.render("dashboard");
+});
+
 module.exports = router;
