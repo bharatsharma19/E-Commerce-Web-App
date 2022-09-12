@@ -245,6 +245,7 @@
         >
           <b> Edit Picture </b>
         </h5>
+        <input type="hidden" id="productid" />
         <div class="editPicture">
           <img
             id="pPicture"
@@ -391,6 +392,8 @@
 
           var item = JSON.parse($(this).attr("products"));
 
+          $("#productid").val(item.productid);
+
           $("#title").html(`Edit Product ${item.productname}`);
 
           $("#pPicture").attr("src", `/images/${item.picture}`);
@@ -410,7 +413,6 @@
           $.ajax({
             url: "/product/updatepicture",
             type: "post",
-            headers: { "Content-Type": "application/json" },
             processData: false,
             data: formData,
             contentType: false,
@@ -419,11 +421,14 @@
               if (response != 0) {
                 if (response.result) {
                   alert(response.status);
+                  window.location.reload("/product/display");
                 } else {
                   alert(response.status);
+                  window.location.reload("/product/display");
                 }
               } else {
                 alert(response.status);
+                window.location.reload("/product/display");
               }
             },
           });

@@ -178,7 +178,8 @@ router.get("/product/deleteproduct", function (req, res) {
 router.post("/product/updatepicture", upload.any(), function (req, res) {
   console.log(req.body);
 
-  pool.query("update products set picture = ? where productid = ?"),
+  pool.query(
+    "update products set picture = ? where productid = ?",
     [req.files[0].filename, req.body.productid],
     function (error, result) {
       if (error) {
@@ -192,7 +193,8 @@ router.post("/product/updatepicture", upload.any(), function (req, res) {
           .status(200)
           .json({ status: true, message: "Picture Updated Successfully" });
       }
-    };
+    }
+  );
 });
 
 module.exports = router;
