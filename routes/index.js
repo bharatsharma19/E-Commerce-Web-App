@@ -37,12 +37,21 @@ router.get("/login", function (req, res) {
 });
 
 router.post("/checkadmin", function (req, res) {
-  res.render("dashboard");
-});
-
-// Dashboard
-router.get("/dashboard", function (req, res) {
-  res.render("dashboard");
+  var email = req.body.email;
+  var password = req.body.password;
+  pool.query(
+    "select * from adminlogin where (email = ?,password = ?)",
+    [],
+    function (error, result) {
+      if (email === email && password === password) {
+        console.log(error);
+        res.render("dashboard");
+      } else {
+        console.log(result);
+        res.render("login");
+      }
+    }
+  );
 });
 
 module.exports = router;
