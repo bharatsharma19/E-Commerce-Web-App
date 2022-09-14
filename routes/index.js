@@ -52,16 +52,18 @@ router.get("/dashboard", function (req, res) {
 
 router.post("/checkadmin", function (req, res) {
   pool.query(
-    "select * from adminlogin where email = ? and password = ?",
-    [req.body.email, req.body.password],
+    "select * from adminlogin where (email = ? or mobile = ?) and password = ?",
+    [req.body.email, req.body.email, req.body.password],
     function (error, result) {
       if (error) {
-        res.render("/login", { msg: "Server Error" });
+        console.log("Error : ", error);
+        res.render("login", { msg: "Server Error" });
       } else {
         if (result.length == 1) {
+          console.log("Result : ", result);
           res.redirect("/dashboard");
         } else {
-          res.render("/login", { msg: "Invalid Email Id or Password" });
+          res.render("login", { msg: "Invalid Email Id or Password" });
         }
       }
     }
