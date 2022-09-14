@@ -628,8 +628,8 @@ pre code {
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin-right: -.75rem;
-    margin-left: -.75rem
+    margin-right: 0.25rem;
+    margin-left: 0.25rem
 }
 
 .no-gutters {
@@ -11360,8 +11360,8 @@ a:focus {
 
 .sidebar .nav-item .nav-link .img-profile,
 .topbar .nav-item .nav-link .img-profile {
-    height: 2rem;
-    width: 2rem
+    height: 3rem;
+    width: 3rem
 }
 
 .topbar {

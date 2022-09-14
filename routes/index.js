@@ -37,7 +37,17 @@ router.get("/login", function (req, res) {
 });
 
 router.get("/dashboard", function (req, res) {
-  res.render("dashboard");
+  const query =
+    "select count(*) as countCategory from category;select count(*) as countProduct,sum(stock) as countStock from products;select count(*) as countBrands from brands";
+  pool.query(query, function (error, result) {
+    if (error) {
+      console.log("Error : ", error);
+      res.render("dashboard", { status: false, msg: "", result: [] });
+    } else {
+      console.log("Result : ", result);
+      res.render("dashboard", { status: true, msg: "", result: result });
+    }
+  });
 });
 
 router.post("/checkadmin", function (req, res) {
@@ -46,13 +56,12 @@ router.post("/checkadmin", function (req, res) {
     [req.body.email, req.body.password],
     function (error, result) {
       if (error) {
-        console.log("Error : ", error);
-        res.redirect("/login");
+        res.render("/login", { msg: "Server Error" });
       } else {
         if (result.length == 1) {
           res.redirect("/dashboard");
         } else {
-          res.redirect("/login");
+          res.render("/login", { msg: "Invalid Email Id or Password" });
         }
       }
     }
