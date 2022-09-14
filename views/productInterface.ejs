@@ -16,8 +16,32 @@
   </head>
 
   <body style="background: rgb(201, 255, 248)">
+    <nav style="background-color: rgb(189, 204, 210)">
+      <div class="nav-wrapper">
+        <a
+          href="/dashboard"
+          class="brand-logo"
+          style="padding-left: 8px; color: rgb(70, 70, 70)"
+        >
+          <b> Dashboard </b></a
+        >
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li>
+            <a
+              href="/product/display"
+              style="color: rgb(70, 70, 70); font-size: 20px"
+              ><b>View All Products</b></a
+            >
+          </li>
+          <li>
+            <a href="/login" style="color: rgb(70, 70, 70); font-size: 20px"
+              ><b>Sign Out</b></a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
     <div class="center-align">
-      <h2>Product Management System</h2>
       <div
         class="row"
         style="
@@ -26,6 +50,7 @@
           background: #fff;
           border: 2px solid burlywood;
           border-radius: 16px;
+          margin-top: 32px;
         "
       >
         <form

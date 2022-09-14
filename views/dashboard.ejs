@@ -46,9 +46,32 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="/dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a
+          >
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/product/add">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Add New Product</span></a
+          >
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/product/display">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>View All Products</span></a
+          >
+        </li>
+        <li class="nav-item active">
+          <a
+            class="nav-link"
+            href="/login"
+            data-toggle="modal"
+            data-target="#logoutModal"
+          >
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Sign Out</span></a
           >
         </li>
       </ul>
@@ -188,8 +211,9 @@
             </ul>
           </nav>
           <!-- End of Topbar -->
+
           <div class="row">
-            <!-- Earnings (Monthly) Card Example -->
+            <!-- Categories -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -212,7 +236,7 @@
               </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example -->
+            <!-- Brands -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
@@ -235,7 +259,7 @@
               </div>
             </div>
 
-            <!-- Pending Requests Card Example -->
+            <!-- Products -->
             <div class="col-xl-3 col-md-6 mb-4" style="padding-right: 8px">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
@@ -258,7 +282,7 @@
               </div>
             </div>
 
-            <!-- Pending Requests Card Example -->
+            <!-- Stock -->
             <div class="col-xl-3 col-md-6 mb-4" style="padding-right: 8px">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
@@ -287,7 +311,11 @@
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Bharat Sharma 2022</span>
+              <span>
+                <b style="color: black; font-size: 16px">
+                  Copyright &copy; Bharat Sharma 2022</b
+                ></span
+              >
             </div>
           </div>
         </footer>
@@ -307,7 +335,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <h4 class="modal-title" id="exampleModalLabel">Ready to Leave?</h4>
             <button
               class="close"
               type="button"
@@ -318,7 +346,9 @@
             </button>
           </div>
           <div class="modal-body">
-            Select "Logout" below if you are ready to end your current session.
+            <b style="color: black">
+              Select Logout below if you are ready to end your current session.
+            </b>
           </div>
           <div class="modal-footer">
             <button
