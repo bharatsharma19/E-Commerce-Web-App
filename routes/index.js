@@ -14,7 +14,7 @@ router.get("/createaccount", function (req, res) {
 
 router.post("/signedup", function (req, res) {
   pool.query(
-    "insert into admin(email, password, adminname, mobile) values(?,?,?,?) ",
+    "insert into adminlogin(email, password, adminname, mobile) values(?,?,?,?) ",
     [req.body.email, req.body.password, req.body.name, req.body.mobile],
     function (error, result) {
       if (error) {
@@ -36,19 +36,24 @@ router.get("/login", function (req, res) {
   res.render("login", { msg: "" });
 });
 
+router.get("/dashboard", function (req, res) {
+  res.render("dashboard");
+});
+
 router.post("/checkadmin", function (req, res) {
-  var email = req.body.email;
-  var password = req.body.password;
   pool.query(
-    "select * from adminlogin where (email = ?,password = ?)",
-    [],
+    "select * from adminlogin where email = ? and password = ?",
+    [req.body.email, req.body.password],
     function (error, result) {
-      if (email === email && password === password) {
-        console.log(error);
-        res.render("dashboard");
+      if (error) {
+        console.log("Error : ", error);
+        res.redirect("/login");
       } else {
-        console.log(result);
-        res.render("login");
+        if (result.length == 1) {
+          res.redirect("/dashboard");
+        } else {
+          res.redirect("/login");
+        }
       }
     }
   );
