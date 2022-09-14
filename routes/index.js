@@ -63,7 +63,7 @@ router.post("/checkadmin", function (req, res) {
           console.log("Result : ", result);
           res.redirect("/dashboard");
         } else {
-          res.render("login", { msg: "Invalid Email Id or Password" });
+          res.render("login", { msg: "Invalid Email/Mobile or Password" });
         }
       }
     }
