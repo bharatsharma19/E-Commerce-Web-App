@@ -61,6 +61,49 @@
     </nav>
     <!-- Navbar End -->
 
+    <% if(status == false) { %>
+    <h3 style="display: flex; justify-content: center; align-items: center">
+      <%= data %>
+    </h3>
+    <%} else { %>
+    <!-- Page Content Start -->
+    <div class="container my-3">
+      <div class="row">
+        <% data.map((item) => { %>
+        <div class="card my-3" style="width: 18rem; padding: 8px; margin: auto">
+          <div
+            style="
+              display: flex;
+              justify-content: flex-end;
+              position: absolute;
+              right: 0;
+            "
+          >
+            <span class="badge badge-pill badge-danger">
+              &#8377; <%= item.price %>/-
+            </span>
+          </div>
+          <div>
+            <img
+              src="/images/<%= item.picture %>"
+              class="card-img-top"
+              alt="..."
+              style="width: 17rem; height: 164px"
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= item.productname %></h5>
+              <p class="card-text"><%= item.description %></p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <!-- Page Content End -->
+    <% } %>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script

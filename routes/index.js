@@ -4,7 +4,22 @@ var pool = require("./pool");
 
 /* GET home page. */
 router.get("/", function (req, res) {
-  res.render("index");
+  pool.query(
+    "select P.*, (select C.categoryname from category C where C.categoryid=P.categoryid) as categoryname,(select S.subcategoryname from subcategory S where S.subcategoryid=P.subcategoryid) as subcategoryname,(select B.brandname from brands B where B.brandid=P.brandid) as brandname from products P",
+    function (error, result) {
+      if (error) {
+        res.render("index", {
+          status: false,
+          data: "Server Error...",
+        });
+      } else {
+        res.render("index", {
+          status: true,
+          data: result,
+        });
+      }
+    }
+  );
 });
 
 // Sign-Up Module
