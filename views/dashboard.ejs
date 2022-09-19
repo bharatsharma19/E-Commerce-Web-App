@@ -66,7 +66,7 @@
         <li class="nav-item active">
           <a
             class="nav-link"
-            href="/login"
+            href="/logout"
             data-toggle="modal"
             data-target="#logoutModal"
           >
@@ -169,7 +169,7 @@
                     <b
                       style="padding-right: 16px; color: black; font-size: 18px"
                     >
-                      Bharat Sharma
+                      <%= admin.adminname %>
                     </b>
                   </span>
                   <img
@@ -197,7 +197,7 @@
                   <div class="dropdown-divider"></div>
                   <a
                     class="dropdown-item"
-                    href="#"
+                    href="/logout"
                     data-toggle="modal"
                     data-target="#logoutModal"
                   >
@@ -358,7 +358,7 @@
             >
               Cancel
             </button>
-            <a class="btn btn-primary" href="/login">Logout</a>
+            <a class="btn btn-primary" href="/logout">Logout</a>
           </div>
         </div>
       </div>

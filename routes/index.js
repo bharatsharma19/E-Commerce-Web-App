@@ -56,7 +56,7 @@ router.get("/login", function (req, res) {
 });
 
 router.get("/dashboard", function (req, res) {
-  const query =
+  var query =
     "select count(*) as countCategory from category;select count(*) as countProduct,sum(stock) as countStock from products;select count(*) as countBrands from brands";
   pool.query(query, function (error, result) {
     if (error) {
@@ -64,7 +64,15 @@ router.get("/dashboard", function (req, res) {
       res.render("dashboard", { status: false, msg: "", result: [] });
     } else {
       console.log("Result : ", result);
-      res.render("dashboard", { status: true, msg: "", result: result });
+
+      var admin = JSON.parse(localstorage.getItem("token"));
+
+      res.render("dashboard", {
+        status: true,
+        msg: "",
+        result: result,
+        admin: admin,
+      });
     }
   });
 });
@@ -79,6 +87,8 @@ router.post("/checkadmin", function (req, res) {
         res.render("login", { msg: "Server Error" });
       } else {
         if (result.length == 1) {
+          localstorage.setItem("token", JSON.stringify(result[0]));
+
           console.log("Result : ", result);
           res.redirect("/dashboard");
         } else {
@@ -87,6 +97,11 @@ router.post("/checkadmin", function (req, res) {
       }
     }
   );
+});
+
+router.get("/logout", function (req, res) {
+  localstorage.removeItem("token");
+  res.redirect("/login");
 });
 
 module.exports = router;

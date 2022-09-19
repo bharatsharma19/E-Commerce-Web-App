@@ -3,12 +3,26 @@ var router = express.Router();
 var pool = require("./pool");
 var upload = require("./multer");
 const { query } = require("express");
+const { LocalStorage } = require("node-localstorage");
+var localstorage = require("node-localstorage").localstorage;
+
+localstorage = new LocalStorage("./scratch");
 
 router.get("/product/add", function (req, res, next) {
-  res.render("productInterface", {
-    messageError: "",
-    message: "",
-  });
+  try {
+    var admin = localstorage.getItem("token");
+
+    if (admin == null) {
+      res.redirect("/login");
+    } else {
+      res.render("productInterface", {
+        messageError: "",
+        message: "",
+      });
+    }
+  } catch (e) {
+    res.redirect("/login");
+  }
 });
 
 router.get("/product/fetch_all_categories", function (req, res) {
@@ -98,29 +112,39 @@ router.post(
 );
 
 router.get("/product/display", function (req, res) {
-  pool.query(
-    "select P.*, (select C.categoryname from category C where C.categoryid=P.categoryid) as categoryname,(select S.subcategoryname from subcategory S where S.subcategoryid=P.subcategoryid) as subcategoryname,(select B.brandname from brands B where B.brandid=P.brandid) as brandname from products P",
-    function (error, result) {
-      if (error) {
-        res.render("display", {
-          status: false,
-          data: "Server Error...",
-        });
-      } else {
-        if (result.length == 0) {
-          res.render("display", {
-            status: false,
-            data: "No Records Found !",
-          });
-        } else {
-          res.render("display", {
-            status: true,
-            data: result,
-          });
+  try {
+    var admin = localstorage.getItem("token");
+
+    if (admin == null) {
+      res.redirect("/login");
+    } else {
+      pool.query(
+        "select P.*, (select C.categoryname from category C where C.categoryid=P.categoryid) as categoryname,(select S.subcategoryname from subcategory S where S.subcategoryid=P.subcategoryid) as subcategoryname,(select B.brandname from brands B where B.brandid=P.brandid) as brandname from products P",
+        function (error, result) {
+          if (error) {
+            res.render("display", {
+              status: false,
+              data: "Server Error...",
+            });
+          } else {
+            if (result.length == 0) {
+              res.render("display", {
+                status: false,
+                data: "No Records Found !",
+              });
+            } else {
+              res.render("display", {
+                status: true,
+                data: result,
+              });
+            }
+          }
         }
-      }
+      );
     }
-  );
+  } catch (e) {
+    res.redirect("/login");
+  }
 });
 
 router.get("/product/editproduct", function (req, res) {
