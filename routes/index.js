@@ -1,6 +1,10 @@
 var express = require("express");
+const { LocalStorage } = require("node-localstorage");
 var router = express.Router();
 var pool = require("./pool");
+var localstorage = require("node-localstorage").localstorage;
+
+localstorage = new LocalStorage("./scratch");
 
 /* GET home page. */
 router.get("/", function (req, res) {
