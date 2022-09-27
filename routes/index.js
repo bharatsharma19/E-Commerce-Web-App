@@ -37,10 +37,8 @@ router.post("/signedup", function (req, res) {
     [req.body.email, req.body.password, req.body.name, req.body.mobile],
     function (error, result) {
       if (error) {
-        console.log("Error : ", error);
         res.render("signup", { message: "", messageError: "Server Error" });
       } else {
-        console.log("Result : ", result);
         res.render("signup", {
           message: "Account Successfully Created",
           messageError: "",
@@ -60,10 +58,8 @@ router.get("/dashboard", function (req, res) {
     "select count(*) as countCategory from category;select count(*) as countProduct,sum(stock) as countStock from products;select count(*) as countBrands from brands";
   pool.query(query, function (error, result) {
     if (error) {
-      console.log("Error : ", error);
       res.render("dashboard", { status: false, msg: "", result: [] });
     } else {
-      console.log("Result : ", result);
 
       var admin = JSON.parse(localstorage.getItem("token"));
 
@@ -83,13 +79,11 @@ router.post("/checkadmin", function (req, res) {
     [req.body.email, req.body.email, req.body.password],
     function (error, result) {
       if (error) {
-        console.log("Error : ", error);
         res.render("login", { msg: "Server Error" });
       } else {
         if (result.length == 1) {
           localstorage.setItem("token", JSON.stringify(result[0]));
 
-          console.log("Result : ", result);
           res.redirect("/dashboard");
         } else {
           res.render("login", { msg: "Invalid Email/Mobile or Password" });

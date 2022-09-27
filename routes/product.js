@@ -207,12 +207,8 @@ router.post("/product/updatepicture", upload.any(), function (req, res) {
     [req.files[0].filename, req.body.productid],
     function (error, result) {
       if (error) {
-        console.log("Error : ", error);
-
         res.status(500).json({ status: false, message: "Server Error" });
       } else {
-        console.log("Result : ", result);
-
         res
           .status(200)
           .json({ status: true, message: "Picture Updated Successfully" });
