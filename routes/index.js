@@ -95,7 +95,7 @@ router.post("/checkadmin", function (req, res) {
 
 router.get("/logout", function (req, res) {
   localstorage.removeItem("token");
-  res.redirect("/login");
+  res.redirect("/");
 });
 
 module.exports = router;
