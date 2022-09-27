@@ -52,8 +52,14 @@
             type="search"
             placeholder="Search"
             aria-label="Search"
+            id="myInput"
+            onkeyup="searchInList()"
           />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          <button
+            onclick="searchInList()"
+            class="btn btn-outline-success my-2 my-sm-0"
+            type="submit"
+          >
             Search
           </button>
         </form>
@@ -68,9 +74,13 @@
     <%} else { %>
     <!-- Page Content Start -->
     <div class="container my-3">
-      <div class="row">
+      <div class="row" id="searchProduct">
         <% data.map((item) => { %>
-        <div class="card my-3" style="width: 18rem; padding: 8px; margin: auto">
+        <div
+          class="card my-3"
+          id="productCard"
+          style="width: 18rem; padding: 8px; margin: auto"
+        >
           <div
             style="
               display: flex;
@@ -121,5 +131,24 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      function searchInList() {
+        var input = document.getElementById("myInput");
+        var convert = input.value.toUpperCase();
+        var searchProduct = document.getElementById("searchProduct");
+        var match = searchProduct.getElementsByTagName("h5");
+
+        var cards = searchProduct.getElementsByClassName("card my-3");
+
+        for (let i = 0; i < match.length; i++) {
+          if (!match[i].innerHTML.toUpperCase().includes(convert)) {
+            cards[i].style.display = "none";
+          } else {
+            cards[i].style.display = "";
+          }
+        }
+      }
+    </script>
   </body>
 </html>
