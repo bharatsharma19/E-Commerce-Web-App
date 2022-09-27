@@ -54,14 +54,8 @@
             aria-label="Search"
             id="myInput"
             onkeyup="searchInList()"
+            autocomplete="name"
           />
-          <button
-            onclick="searchInList()"
-            class="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
-          >
-            Search
-          </button>
         </form>
       </div>
     </nav>
@@ -137,15 +131,19 @@
         var input = document.getElementById("myInput");
         var convert = input.value.toUpperCase();
         var searchProduct = document.getElementById("searchProduct");
-        var match = searchProduct.getElementsByTagName("h5");
+        var pName = searchProduct.getElementsByTagName("h5");
+        var pDesc = searchProduct.getElementsByTagName("p");
 
         var cards = searchProduct.getElementsByClassName("card my-3");
 
-        for (let i = 0; i < match.length; i++) {
-          if (!match[i].innerHTML.toUpperCase().includes(convert)) {
-            cards[i].style.display = "none";
-          } else {
+        for (let i = 0; i < pName.length; i++) {
+          if (
+            pName[i].innerHTML.toUpperCase().includes(convert) ||
+            pDesc[i].innerHTML.toUpperCase().includes(convert)
+          ) {
             cards[i].style.display = "";
+          } else {
+            cards[i].style.display = "none";
           }
         }
       }
