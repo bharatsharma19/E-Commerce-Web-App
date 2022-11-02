@@ -83,7 +83,6 @@ router.post("/checkadmin", function (req, res) {
       } else {
         if (result.length == 1) {
           localstorage.setItem("token", JSON.stringify(result[0]));
-
           res.redirect("/dashboard");
         } else {
           res.render("login", { msg: "Invalid Email/Mobile or Password" });
